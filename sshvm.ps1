@@ -1,3 +1,25 @@
+<#
+.SYNOPSIS
+    On a local Hyper-V connect with SSH to a VM guest.
+
+.DESCRIPTION
+    When the VM is stopped or paused it will be started. When the network is the ip address will be grapped to used for the SSH session with the provided username. The hostkey will not be checked and the ip will not be added to the known_hosts file. When disconnecting the ssh session you can choose to shut down, suspend or do nothing with the guest.
+
+.PARAMETER VMName
+    The VM name where to connect to.
+
+.PARAMETER UserName
+    The UserName which will be used for the ssh connection.
+
+.NOTES
+    Author: Sander Siemonsma
+
+.EXAMPLE
+    .\sshvm.ps1 -VMName MyLinuxGuest -UserName user1
+
+    This will connect to MyLinuxGuest with username user1.
+#>
+
 param(
     [Parameter(Mandatory = $true)]
     [string]
