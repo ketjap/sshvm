@@ -18,6 +18,9 @@
     .\sshvm.ps1 -VMName MyLinuxGuest -UserName user1
 
     This will connect to MyLinuxGuest with username user1.
+
+.LINK
+    GitHub: https://github.com/ketjap/sshvm
 #>
 
 param(
