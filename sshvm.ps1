@@ -3,7 +3,9 @@
     On a local Hyper-V connect with SSH to a VM guest.
 
 .DESCRIPTION
-    When the VM is stopped or paused it will be started. When the network is the ip address will be grapped to used for the SSH session with the provided username. The hostkey will not be checked and the ip will not be added to the known_hosts file. When disconnecting the ssh session you can choose to shut down, suspend or do nothing with the guest.
+    When the VM is stopped or paused it will be started. When the network is the ip address will be grapped to used for the SSH session with the provided username.
+    The hostkey will not be checked and the ip will not be added to the known_hosts file. When disconnecting the ssh session you can choose to shut down,
+    suspend or do nothing with the guest.
 
 .PARAMETER VMName
     The VM name where to connect to.
@@ -55,12 +57,14 @@ Write-Output -InputObject "Network address: $vmnet`n"
 
 ssh -o "StrictHostKeyChecking=no" -o "UserKnownHostsFile=\\.\NUL"  "$UserName@$vmnet"
 
-switch (Read-Host -Prompt "Do you want to stop VM $($VMName)? [Y] Yes [N] No [S] Suspend (default is ""N"")") {
+switch (Read-Host -Prompt "Do you want to stop VM $($VMName)? `e[37;1m[Y] Yes `e[33;1m[N] No `e[37;1m[S] Suspend `e[0m(default is ""N"")") {
     "Y" {
         Stop-VM -Name $VMName
+        Write-Output -InputObject "VM $VMName stopped..."
     }
     "S" {
         Suspend-VM -Name $VMName
+        Write-Output -InputObject "VM $VMName suspended..."
     }
     default {
         Write-Output -InputObject "Keep VM $VMName running..."
