@@ -55,7 +55,7 @@ if (!($vmnet = (Get-VMNetworkAdapter -VMName $VMName).IPAddresses | Select-Objec
 }
 Write-Output -InputObject "Network address: $vmnet`n"
 
-ssh -o "StrictHostKeyChecking=no" -o "UserKnownHostsFile=\\.\NUL"  "$UserName@$vmnet"
+hvc ssh -o "StrictHostKeyChecking=no" -o "UserKnownHostsFile=\\.\NUL"  "$UserName@$VMName"
 
 switch (Read-Host -Prompt "Do you want to stop VM $($VMName)? `e[37;1m[Y] Yes `e[33;1m[N] No `e[37;1m[S] Suspend `e[0m(default is ""N"")") {
     "Y" {
